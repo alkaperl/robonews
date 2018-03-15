@@ -1,0 +1,24 @@
+#run vo generation
+./robonews.py
+#convert vo to usable wav
+sox storyvo.mp3 -r 44100 -c 2 storyvo_final.wav speed 1.2
+#mix with background music
+sox -m storyvo_final.wav ./music/bg2low.wav mix.wav gain -n
+#get length of vo file so we know when to fade out
+sox mix.wav final_mix.wav fade 0 $(soxi -D storyvo_final.wav | awk {'print $1 + 4'}) 5
+
+#ping google news
+ffmpeg -loop 1 -i static.jpg -i video1.mp4 -i video2.mp4 -filter_complex "[1:v]scale=(iw/1)-20:-1[a]; [2:v]scale=(iw/1)-20:-1[b]; [0:v][a]overlay=10:(main_h/2)-(overlay_h/2):shortest=1[c]; [c][b]overlay=main_w-overlay_w-10:(main_h/2)-(overlay_h/2)[video]" -map "[video]" output.mp4
+
+#parse article
+
+#scrape domain
+speed up vo to say: "credit www.newsite.com link in description"
+
+
+
+RENAME IMAGES FOR FFMPEG
+x=1; for i in *jpg; do counter=$(printf %03d $x); mv "$i" ./img"$counter".jpg; x=$(($x+1)); done
+
+
+

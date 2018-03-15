@@ -1,0 +1,4 @@
+# this is a comment
+#file './bumpers/intro.mp4'
+file 'final.mp4'
+file './bumpers/outro.mp4'

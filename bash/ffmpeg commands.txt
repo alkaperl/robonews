@@ -1,0 +1,28 @@
+ffmpeg -framerate 1/5 -i img%03d.png -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
+cat *.jpeg | ffmpeg -f image2pipe -i - output.mkv
+			 ffmpeg -f image2 -i *.jpg -vcodec mpeg2video video.mpg
+		 
+ffmpeg -framerate 24 -i %d.jpeg output.mp4
+ffmpeg -framerate 1/5 -pattern_type glob -i "*.jpeg" -vf "fps=25,format=yuv420p" out.mp4
+ffmpeg -y -f image2 -r 1/5 -i "*.jpeg" -pix_fmt yuv420p -r 25 output.mp4  
+ 
+ffmpeg -i '%05d.jpeg' output.mp4
+x=1; for i in *jpg; do counter=$(printf %03d $x); ln "$i" ./tmp/img"$counter".jpg; x=$(($x+1)); done
+ffmpeg -framerate 24 -i img%03d.png output.mp4
+ffmpeg -start_number -framerate 24 -i ./img%03d.jpeg ./a.mp4
+ffmpeg -f image2 -i img%03d.jpeg a.mpg
+
+
+			 ffmpeg -f image2 -i *.jpg -vcodec mpeg2video video.mpg
+cat *.jpeg | ffmpeg -f image2pipe -r 1 -vcodec mpeg2video video.mpg
+
+
+
+avconv -r 10 -i img%03d.jpeg -vcodec libx264 yourmovie.mp4
+
+
+
+ffmpeg -framerate 10 -pattern_type glob -i '*.jpeg' -c:v libx264 -pix_fmt yuv420p out.mp4
+
+
+ffmpeg -framerate 1/5 -i ./pics/%d.jpeg output.mp4
